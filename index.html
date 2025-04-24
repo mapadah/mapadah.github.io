@@ -1,114 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ChatGPT Clone</title>
+  <meta charset="UTF-8">
+  <title>Free ChatGPT Clone</title>
   <style>
-    body {
-      display: flex;
-      font-family: sans-serif;
-      margin: 0;
-      height: 100vh;
-    }
-    #chat-wrapper {
-      flex: 2;
-      display: flex;
-      flex-direction: column;
-      padding: 1rem;
-    }
-    #chat {
-      flex: 1;
-      overflow-y: auto;
-      border: 1px solid #ccc;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      background: #f8f8f8;
-    }
-    .message { margin-bottom: 1rem; }
+    body { font-family: sans-serif; max-width: 600px; margin: auto; padding: 1rem; }
+    .message { margin: 1rem 0; }
     .user { color: blue; }
     .bot { color: green; }
-    #console {
-      flex: 1;
-      border-left: 2px solid #000;
-      background: #111;
-      color: #0f0;
-      padding: 1rem;
-      font-family: monospace;
-      overflow-y: auto;
-    }
-    #inputRow {
-      display: flex;
-    }
-    #userInput {
-      flex: 1;
-      padding: 0.5rem;
-    }
-    button {
-      padding: 0.5rem 1rem;
-      margin-left: 0.5rem;
-    }
   </style>
 </head>
 <body>
-  <div id="chat-wrapper">
-    <h1>Chat with GPT</h1>
-    <div id="chat"></div>
-    <div id="inputRow">
-      <input type="text" id="userInput" placeholder="Type something..." />
-      <button onclick="sendMessage()">Send</button>
-    </div>
-  </div>
-  <div id="console">
-    <strong>Console Output:</strong><br/>
-  </div>
+  <h1>Free Chatbot (No API Key)</h1>
+  <div id="chat"></div>
+  <input type="text" id="input" placeholder="Say something..." style="width: 80%;">
+  <button onclick="sendMessage()">Send</button>
 
   <script>
-    const chatDiv = document.getElementById('chat');
-    const input = document.getElementById('userInput');
-    const consoleDiv = document.getElementById('console');
-
-    function logToConsole(message) {
-      consoleDiv.innerHTML += `<div>> ${message}</div>`;
-      consoleDiv.scrollTop = consoleDiv.scrollHeight;
-    }
+    const chat = document.getElementById("chat");
 
     async function sendMessage() {
-      const userMessage = input.value.trim();
-      if (!userMessage) return;
+      const input = document.getElementById("input");
+      const userText = input.value.trim();
+      if (!userText) return;
+      
+      chat.innerHTML += `<div class="message user"><strong>You:</strong> ${userText}</div>`;
+      input.value = "";
 
-      chatDiv.innerHTML += `<div class="message user"><strong>You:</strong> ${userMessage}</div>`;
-      input.value = '';
-      logToConsole(`Sending message: "${userMessage}"`);
+      const loadingMsg = document.createElement("div");
+      loadingMsg.className = "message bot";
+      loadingMsg.innerHTML = "<strong>Bot:</strong> Thinking...";
+      chat.appendChild(loadingMsg);
 
-      try {
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer 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' // ⛔ Replace this!
-          },
-          body: JSON.stringify({
-            model: "gpt-3.5-turbo",
-            messages: [{ role: "user", content: userMessage }]
-          })
-        });
+      const response = await fetch("https://huggingface.co/chat/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          model: "mistralai/Mistral-7B-Instruct-v0.1",
+          inputs: userText,
+          options: { wait_for_model: true }
+        })
+      });
 
-        const data = await response.json();
-        logToConsole(`Response received:` + JSON.stringify(data, null, 2));
-
-        if (data.error) {
-          chatDiv.innerHTML += `<div class="message bot"><strong>Error:</strong> ${data.error.message}</div>`;
-          logToConsole(`❌ API Error: ${data.error.message}`);
-          return;
-        }
-
-        const botReply = data.choices[0].message.content;
-        chatDiv.innerHTML += `<div class="message bot"><strong>Bot:</strong> ${botReply}</div>`;
-      } catch (err) {
-        chatDiv.innerHTML += `<div class="message bot"><strong>Exception:</strong> ${err.message}</div>`;
-        logToConsole(`❌ Exception: ${err.message}`);
-      }
+      const data = await response.json();
+      const botText = data.generated_text || "Something went wrong.";
+      loadingMsg.innerHTML = `<strong>Bot:</strong> ${botText}`;
     }
   </script>
 </body>
