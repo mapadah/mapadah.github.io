@@ -1,194 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta property="og:title" content="mpd's portfolio" />
-    <meta property="og:description" content="portfolio about me" />
-    <meta property="og:image" content="https://avatar.canva.com/avatars/users/44bc3fc2-b75b-4078-b17d-240867841391/50.jpg" />
-    <meta property="og:url" content="https://github.com/mapadah" />
-    <meta property="og:type" content="website" />
-</head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>mpd's portfolio</title>
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>mapadah 95</title>
+  <link href="https://unpkg.com/98.css" rel="stylesheet" />
   <style>
-    /* Basic reset and global styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-    h1, h2, h3 {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: teal;
+      font-family: "Perfect DOS VGA 437", monospace;
+      font-size: 18px;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
     }
 
-    /* navi bar */
-    nav {
-      background-color: #333;
-      color: #fff;
-      padding: 1rem;
-      position: sticky;
+    .boot-screen {
+      position: fixed;
       top: 0;
-      z-index: 100;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: black;
+      color: lime;
+      font-size: 20px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
     }
-    nav ul {
-      list-style-type: none;
+
+    .login-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: teal;
+      color: white;
       display: flex;
-      justify-content: space-around;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9998;
     }
-    nav ul li {
-      display: inline;
+
+    .hidden { display: none; }
+
+    .taskbar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: silver;
+      display: flex;
+      align-items: center;
+      padding: 2px;
+      border-top: 2px solid white;
+      border-left: 2px solid white;
+      border-right: 2px solid gray;
+      border-bottom: 2px solid gray;
     }
-    nav ul li a {
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 15px;
+    .start-button {
+      margin-left: 4px;
       font-weight: bold;
-      transition: background-color 0.3s;
     }
-    nav ul li a:hover {
-      background-color: #575757;
-    }
-
-    /* hero section */
-    .hero {
-      background: #4CAF50;
-      color: #fff;
+    .desktop-icon {
+      color: white;
       text-align: center;
-      padding: 50px 20px;
+      width: 80px;
+      margin: 20px;
+      cursor: default;
     }
-    .hero h1 {
-      font-size: 2.5em;
+    .desktop-icon img {
+      width: 32px;
+      height: 32px;
     }
-    .hero p {
-      font-size: 1.2em;
-    }
-
-    /* about me */
-    #about {
-      background-color: #fff;
-      padding: 50px 20px;
-      text-align: center;
-    }
-    #about h2 {
-      margin-bottom: 20px;
-    }
-
-    /* projects section */
-    #projects {
-      background-color: #f9f9f9;
-      padding: 50px 20px;
-    }
-    #projects h2 {
-      margin-bottom: 20px;
-    }
-    .project {
-      display: inline-block;
-      width: 30%;
-      margin: 10px;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-    .project h3 {
-      margin-bottom: 10px;
-    }
-
-    /* Contact Section */
-    #contact {
-      background-color: #333;
-      color: #fff;
-      padding: 50px 20px;
-      text-align: center;
-    }
-    #contact h2 {
-      margin-bottom: 20px;
-    }
-    #contact form input, #contact form textarea {
-      width: 100%;
+    .desktop {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 40px;
+      display: flex;
+      flex-wrap: wrap;
       padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: none;
     }
-    #contact form button {
-      background-color: #4CAF50;
-      color: #fff;
-      padding: 10px 20px;
+    .window {
+      position: absolute;
+      width: 400px;
+      background: white;
+      z-index: 10;
+      resize: both;
+      overflow: auto;
+    }
+    .window-header {
+      cursor: move;
+    }
+    .start-menu {
+      position: absolute;
+      bottom: 40px;
+      left: 4px;
+      width: 200px;
+      background: silver;
+      border: 2px outset white;
+      display: none;
+      flex-direction: column;
+      z-index: 20;
+    }
+    .start-menu button {
+      padding: 8px;
+      text-align: left;
       border: none;
-      border-radius: 5px;
+      background: transparent;
       cursor: pointer;
+      font-size: 16px;
     }
-
-    /* footer */
-    footer {
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      padding: 20px 10px;
+    .start-menu button:hover {
+      background: navy;
+      color: white;
     }
-
+    a {
+      color: blue;
+      font-size: 16px;
+    }
+    .window-body {
+      font-size: 16px;
+    }
+    .player-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 5px 0;
+    }
+    .track-list {
+      margin-top: 10px;
+    }
+    .track-item {
+      cursor: pointer;
+      padding: 4px;
+    }
+    .track-item:hover {
+      background-color: #ccc;
+    }
+    @font-face {
+      font-family: "Perfect DOS VGA 437";
+      src: local("Courier New");
+    }
   </style>
 </head>
 <body>
+  <div class="boot-screen" id="bootScreen"></div>
+  <div class="login-screen" id="loginScreen">
+    <h1>Welcome!</h1>
+    <button onclick="showDesktop()">Login</button>
+  </div>
 
-  <!-- navi bar -->
-  <nav>
-    <ul>
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#about">About Me</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- hero section -->
-  <section id="hero" class="hero">
-    <h1>Welcome to My Portfolio</h1>
-    <p>mapadah is so cool!</p>
-  </section>
-
-  <!-- about me -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I'm a developer creating simple things for the simple internet.</p>
-  </section>
-
-  <!-- projects section -->
-  <section id="projects">
-    <h2>My Projects</h2>
-    <div class="project">
-      <h3><a href="https://github.com/mapadah/Colors.ps1" target="_blank">Colors.ps1</a></h3>
-      <p>A Powershell script that emulates the looks of malware taking over your computer</p>
+  <div class="desktop hidden" id="desktop">
+    <div class="desktop-icon" ondblclick="openWindow('welcomeWindow')">
+      <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-5.png" alt="My Computer">
+      <div>My PC</div>
     </div>
-    <div class="project">
-      <h3>Simple Video Player (WIP)</h3>
-      <p>A really simple video player supporting mp4 avi and other file formats</p>
+    <div class="desktop-icon" ondblclick="openWindow('projectsWindow')">
+      <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-2.png" alt="Projects">
+      <div>Projects</div>
     </div>
-    <div class="project">
-      <h3>PlaceHolder3</h3>
-      <p>PlaceHolderDescription</p>
+    <div class="desktop-icon" ondblclick="openWindow('linksWindow')">
+      <img src="https://win98icons.alexmeub.com/icons/png/network_cool_two_pcs-0.png" alt="Links">
+      <div>Links</div>
     </div>
-  </section>
+    <div class="desktop-icon" ondblclick="openWindow('musicWindow')">
+      <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png" alt="Music Player">
+      <div>Winamp</div>
+    </div>
+  </div>
 
-  <!-- contact section -->
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <a href="mailto:f3nnixcd@gmail.com" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">Send Me a Email!</a> <a href="https://discord.com/users/1177664868690702367" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">Discord</a>
+  <div class="taskbar" id="taskbar">
+    <button class="start-button" onclick="toggleStartMenu()">Start</button>
+  </div>
 
-  </section>
+  <div class="start-menu" id="startMenu">
+    <button onclick="openWindow('welcomeWindow')">Welcome</button>
+    <button onclick="openWindow('projectsWindow')">Projects</button>
+    <button onclick="openWindow('linksWindow')">Links</button>
+    <button onclick="openWindow('musicWindow')">Music Player</button>
+  </div>
 
-  <!-- footer -->
-  <footer>
-    <p>&copy; 2025 mapadah. All rights reserved.</p>
-  </footer>
+  <!-- welcome window with projects -->
+  <div class="window" id="welcomeWindow" style="top: 80px; left: 100px; display: none;">
+    <div class="title-bar window-header">
+      <div class="title-bar-text">Welcome</div>
+      <div class="title-bar-controls">
+        <button aria-label="Close" onclick="this.parentElement.parentElement.parentElement.style.display='none'"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <p>Hello, I'm <strong>mapadah</strong>! I’m a creative developer building nostalgic and interactive web experiences.</p>
+      <p><img src="https://cdn.discordapp.com/avatars/1177664868690702367/1520f3ecea40ee7ab03c265cf0338e88.png?size=2048&width=461&height=461" alt="Discord Avatar" style="width:48px; height:48px;"> Discord: mapadah</p>
+      <p>Projects:</p>
+      <ul>
+        <li><a href="https://github.com/mapadah/Colors.ps1">Colors.ps1</a></li>
+        <li><a href="https://github.com/mapadah/mpdtemplate">MPD Template</a></li>
+        <li><a href="https://github.com/mapadah/chance">Chance</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- music player window with ui -->
+  <div class="window" id="musicWindow" style="top: 180px; left: 200px; display: none;">
+    <div class="title-bar window-header">
+      <div class="title-bar-text">Winamp Music Player</div>
+      <div class="title-bar-controls">
+        <button aria-label="Close" onclick="this.parentElement.parentElement.parentElement.style.display='none'"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <p id="nowPlaying">Now playing: None</p>
+      <div class="player-controls">
+        <button onclick="togglePlay()">Play/Pause</button>
+        <button onclick="toggleLoop()">Loop</button>
+        <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+      </div>
+      <input type="range" id="seekBar" value="0" min="0" max="100" step="1" style="width:100%;">
+      <div class="track-list">
+        <div class="track-item" onclick="loadTrack('sample3.mp3', 'https://filesamples.com/samples/audio/mp3/sample3.mp3')">sample3.mp3</div>
+        <div class="track-item" onclick="loadTrack('sample2.mp3', 'https://filesamples.com/samples/audio/mp3/sample2.mp3')">sample2.mp3</div>
+      </div>
+      <audio id="musicPlayer"></audio>
+    </div>
+  </div>
+
+  <script>
+    const player = document.getElementById("musicPlayer");
+    const seekBar = document.getElementById("seekBar");
+    const currentTime = document.getElementById("currentTime");
+    const duration = document.getElementById("duration");
+    const nowPlaying = document.getElementById("nowPlaying");
+
+    function loadTrack(name, url) {
+      player.src = url;
+      nowPlaying.textContent = "Now playing: " + name;
+      player.play();
+    }
+
+    function togglePlay() {
+      if (player.paused) {
+        player.play();
+      } else {
+        player.pause();
+      }
+    }
+
+    function toggleLoop() {
+      player.loop = !player.loop;
+    }
+
+    player.ontimeupdate = () => {
+      seekBar.value = (player.currentTime / player.duration) * 100;
+      currentTime.textContent = formatTime(player.currentTime);
+      duration.textContent = formatTime(player.duration);
+    };
+
+    seekBar.oninput = () => {
+      player.currentTime = (seekBar.value / 100) * player.duration;
+    };
+
+    function formatTime(seconds) {
+      const m = Math.floor(seconds / 60);
+      const s = Math.floor(seconds % 60);
+      return m + ":" + (s < 10 ? "0" + s : s);
+    }
+
+    window.onload = () => {
+      document.getElementById('bootScreen').style.display = 'none';
+      document.getElementById('loginScreen').classList.remove('hidden');
+    };
+
+    function showDesktop() {
+      document.getElementById('loginScreen').classList.add('hidden');
+      document.getElementById('desktop').classList.remove('hidden');
+      document.getElementById('taskbar').classList.remove('hidden');
+      openWindow('welcomeWindow');
+    }
+
+    function toggleStartMenu() {
+      const menu = document.getElementById('startMenu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function openWindow(id) {
+      document.getElementById(id).style.display = 'block';
+      document.getElementById('startMenu').style.display = 'none';
+    }
+
+    ["welcomeWindow", "projectsWindow", "linksWindow", "musicWindow"].forEach(id => dragElement(document.getElementById(id)));
+
+    function dragElement(elmnt) {
+      var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      if (elmnt.querySelector(".window-header")) {
+        elmnt.querySelector(".window-header").onmousedown = dragMouseDown;
+      }
+      function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+      }
+      function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      }
+      function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+    }
+  </script>
 </body>
 </html>
