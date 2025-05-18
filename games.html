@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Win98 Flash Player</title>
+  <link rel="stylesheet" href="https://unpkg.com/98.css" />
+  <style>
+    body {
+      background: #008080;
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .window {
+      width: 800px;
+      height: 450px;
+      position: relative;
+      z-index: 10;
+    }
+    .window-body {
+      display: flex;
+      height: calc(100% - 28px);
+      overflow: hidden;
+    }
+    #flashContainer {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+    }
+    .sidebar {
+      width: 150px;
+      border-right: 2px solid gray;
+      padding-right: 8px;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar button {
+      width: 100%;
+      margin-bottom: 4px;
+    }
+    .back-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 20;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="back-button">
+    <button onclick="window.location.href='index.html'">← Back to Main Page</button>
+  </div>
+
+  <div class="window" id="flashWindow">
+    <div class="title-bar">
+      <div class="title-bar-text">Flash Player</div>
+      <div class="title-bar-controls">
+        <button aria-label="Close" onclick="document.getElementById('flashWindow').style.display='none'"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <div class="sidebar">
+        <strong>Games</strong>
+        <ul>
+          <li><button onclick="loadSWF('https://mapadah.github.io/game/l2f.swf')">Game 1</button></li>
+          <li><button onclick="loadSWF('https://example.com/game2.swf')">Game 2</button></li>
+          <li><button onclick="loadSWF('https://example.com/game3.swf')">Game 3</button></li>
+        </ul>
+      </div>
+      <div style="flex-grow: 1; padding-left: 8px;">
+        <div id="flashContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ruffle -->
+  <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+  <script>
+    function loadSWF(url) {
+      const container = document.getElementById("flashContainer");
+      container.innerHTML = "";
+      const ruffle = window.RufflePlayer.newest();
+      const player = ruffle.createPlayer();
+      container.appendChild(player);
+      player.load(url);
+    }
+  </script>
+</body>
+</html>
