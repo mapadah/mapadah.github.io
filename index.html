@@ -21,6 +21,15 @@
       margin: 0;
       overflow: hidden;
     }
+	
+	iframe {
+      width: 40px;
+      height: 480px;
+      border: none;
+      background-color: white; /* helps blend with Flash UI */
+      display: block;
+      margin: 0 auto;
+    }   
 
     .boot-screen {
       position: fixed;
@@ -189,14 +198,23 @@
       />
       <div>Links</div>
     </div>
-    <div class="desktop-icon" ondblclick="openWindow('musicWindow')">
+	<div class="desktop-icon" ondblclick="openWindow('musicWindow')">
       <img
         src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png"
         alt="Music Player"
       />
       <div>Winamp</div>
+	 </div>
+	  <!-- Desktop Icon -->
+	<div class="desktop-icon" ondblclick="location.href='games.html'">
+		<img src="https://win98icons.alexmeub.com/icons/png/joystick-4.png" alt="Flash" />
+		<div>Games</div>
+	</div>
     </div>
   </div>
+</div>
+
+
 
   <div class="taskbar" id="taskbar">
     <button class="start-button" onclick="toggleStartMenu()">Start</button>
@@ -207,6 +225,7 @@
     <button onclick="openWindow('projectsWindow')">Projects</button>
     <button onclick="openWindow('linksWindow')">Links</button>
     <button onclick="openWindow('musicWindow')">Music Player</button>
+	<button onclick="location.href='games.html'">Games</button>
   </div>
 
   <!-- projects window -->
@@ -330,7 +349,7 @@
         <input
           type="range"
           id="volumeSlider"
-          value="100"
+          value="50"
           min="0"
           max="100"
           step="1"
@@ -351,6 +370,7 @@
       </div>
       <audio id="musicPlayer"></audio>
     </div>
+	
   </div>
 
   <script>
@@ -462,5 +482,45 @@
       }
     }
   </script>
+<!-- Ruffle Flash Player Window 
+<div class="window" id="flashWindow" style="top: 25px; left: 100px; width: 800x; height: 600px; display: none;">
+  <div class="title-bar window-header">
+    <div class="title-bar-text">Flash Player</div>
+    <div class="title-bar-controls">
+      <button aria-label="Close" onclick="this.parentElement.parentElement.parentElement.style.display='none'"></button>
+    </div>
+  </div>
+  <div class="window-body" style="display: flex; height: 100%;">
+    <div style="width: 150px; border-right: 2px solid gray; padding-right: 8px;">
+      <strong>Games</strong>
+      <ul style="list-style: none; padding: 0;">
+        <li><button onclick="loadSWF('https://mapadah.github.io/game/l2f.swf')">Game 1</button></li>
+        <li><button onclick="loadSWF('https://example.com/game2.swf')">Game 2</button></li>
+        <li><button onclick="loadSWF('https://example.com/game3.swf')">Game 3</button></li>
+      </ul>
+    </div>
+    <div style="flex-grow: 1; padding-left: 8px;">
+      <div id="flashContainer" style="width: 400px; height:350px; background: transparent;"></div>
+    </div>
+  </div>
+</div>
+<!-- Ruffle Embed 
+<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+<script>
+  let rufflePlayer = null;
+  function loadSWF(url) {
+    const container = document.getElementById("flashContainer");
+    container.innerHTML = ""; // Clear previous
+    const ruffle = window.RufflePlayer.newest();
+    const player = ruffle.createPlayer();
+    container.appendChild(player);
+    player.load(url);
+    rufflePlayer = player;
+  }
+
+  // Make it draggable like others
+  dragElement(document.getElementById("flashWindow"));
+</script>-->
+
 </body>
 </html>
