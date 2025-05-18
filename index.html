@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="title" content="mapadah 95" />
+  <meta name="description" content="A nostalgic Windows 95-inspired web experience by mapadah featuring music, projects, and retro UI." />
+  <meta name="author" content="mapadah" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="mapadah, windows 95, win95, retro web, personal website, projects, music, aesthetic, nostalgia" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#008080" />
   <title>mapadah 95</title>
   <link href="https://unpkg.com/98.css" rel="stylesheet" />
   <style>
@@ -46,7 +53,9 @@
       z-index: 9998;
     }
 
-    .hidden { display: none; }
+    .hidden {
+      display: none;
+    }
 
     .taskbar {
       position: absolute;
@@ -160,19 +169,31 @@
 
   <div class="desktop hidden" id="desktop">
     <div class="desktop-icon" ondblclick="openWindow('welcomeWindow')">
-      <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-5.png" alt="My Computer">
+      <img
+        src="https://win98icons.alexmeub.com/icons/png/computer_explorer-5.png"
+        alt="My Computer"
+      />
       <div>My PC</div>
     </div>
     <div class="desktop-icon" ondblclick="openWindow('projectsWindow')">
-      <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-2.png" alt="Projects">
+      <img
+        src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-2.png"
+        alt="Projects"
+      />
       <div>Projects</div>
     </div>
     <div class="desktop-icon" ondblclick="openWindow('linksWindow')">
-      <img src="https://win98icons.alexmeub.com/icons/png/network_cool_two_pcs-0.png" alt="Links">
+      <img
+        src="https://win98icons.alexmeub.com/icons/png/network_cool_two_pcs-0.png"
+        alt="Links"
+      />
       <div>Links</div>
     </div>
     <div class="desktop-icon" ondblclick="openWindow('musicWindow')">
-      <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png" alt="Music Player">
+      <img
+        src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png"
+        alt="Music Player"
+      />
       <div>Winamp</div>
     </div>
   </div>
@@ -188,17 +209,80 @@
     <button onclick="openWindow('musicWindow')">Music Player</button>
   </div>
 
-  <!-- welcome window with projects -->
-  <div class="window" id="welcomeWindow" style="top: 80px; left: 100px; display: none;">
+  <!-- projects window -->
+<div
+  class="window"
+  id="projectsWindow"
+  style="top: 120px; left: 160px; display: none"
+>
+  <div class="title-bar window-header">
+    <div class="title-bar-text">Projects</div>
+    <div class="title-bar-controls">
+      <button
+        aria-label="Close"
+        onclick="this.parentElement.parentElement.parentElement.style.display='none'"
+      ></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <ul>
+      <li><a href="https://github.com/mapadah/Colors.ps1" target="_blank">Colors.ps1</a></li>
+      <li><a href="https://github.com/mapadah/mpdtemplate" target="_blank">MPD Template</a></li>
+      <li><a href="https://github.com/mapadah/chance" target="_blank">Chance</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- links Window -->
+<div
+  class="window"
+  id="linksWindow"
+  style="top: 200px; left: 300px; display: none"
+>
+  <div class="title-bar window-header">
+    <div class="title-bar-text">Links</div>
+    <div class="title-bar-controls">
+      <button
+        aria-label="Close"
+        onclick="this.parentElement.parentElement.parentElement.style.display='none'"
+      ></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <p><strong>GitHub:</strong> <a href="https://github.com/mapadah" target="_blank">github.com/mapadah</a></p>
+    <p><strong>Discord:</strong> mapadah</p>
+    <p><strong>Website:</strong> <a href="https://mapadah.github.io" target="_blank">mapadah.github.io</a></p>
+	<p><strong>Youtube:</strong> <a href="https://youtube.com/@mapadahofficial" target="_blank">@mapadahofficial</a></p>
+  </div>
+</div>
+
+  <div
+    class="window"
+    id="welcomeWindow"
+    style="top: 80px; left: 100px; display: none"
+  >
     <div class="title-bar window-header">
       <div class="title-bar-text">Welcome</div>
       <div class="title-bar-controls">
-        <button aria-label="Close" onclick="this.parentElement.parentElement.parentElement.style.display='none'"></button>
+        <button
+          aria-label="Close"
+          onclick="this.parentElement.parentElement.parentElement.style.display='none'"
+        ></button>
       </div>
     </div>
     <div class="window-body">
-      <p>Hello, I'm <strong>mapadah</strong>! I’m a creative developer building nostalgic and interactive web experiences.</p>
-      <p><img src="https://cdn.discordapp.com/avatars/1177664868690702367/1520f3ecea40ee7ab03c265cf0338e88.png?size=2048&width=461&height=461" alt="Discord Avatar" style="width:48px; height:48px;"> Discord: mapadah</p>
+      <p>
+        Hello, I'm <strong>mapadah</strong>! I’m a creative developer building
+        simple things for the simple internet.
+      </p>
+      <p>
+        <img
+          src="https://cdn.discordapp.com/avatars/1177664868690702367/1520f3ecea40ee7ab03c265cf0338e88.png?size=2048&width=461&height=461"
+          alt="Discord Avatar"
+          style="width: 48px; height: 48px"
+        />
+        Discord: mapadah
+      </p>
       <p>Projects:</p>
       <ul>
         <li><a href="https://github.com/mapadah/Colors.ps1">Colors.ps1</a></li>
@@ -206,14 +290,22 @@
         <li><a href="https://github.com/mapadah/chance">Chance</a></li>
       </ul>
     </div>
+	
   </div>
 
   <!-- music player window with ui -->
-  <div class="window" id="musicWindow" style="top: 180px; left: 200px; display: none;">
+  <div
+    class="window"
+    id="musicWindow"
+    style="top: 180px; left: 200px; display: none"
+  >
     <div class="title-bar window-header">
       <div class="title-bar-text">Winamp Music Player</div>
       <div class="title-bar-controls">
-        <button aria-label="Close" onclick="this.parentElement.parentElement.parentElement.style.display='none'"></button>
+        <button
+          aria-label="Close"
+          onclick="this.parentElement.parentElement.parentElement.style.display='none'"
+        ></button>
       </div>
     </div>
     <div class="window-body">
@@ -223,10 +315,39 @@
         <button onclick="toggleLoop()">Loop</button>
         <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
       </div>
-      <input type="range" id="seekBar" value="0" min="0" max="100" step="1" style="width:100%;">
+      <input
+        type="range"
+        id="seekBar"
+        value="0"
+        min="0"
+        max="100"
+        step="1"
+        style="width: 100%"
+      />
+      <!-- VOLUME CONTROL -->
+      <div class="player-controls" style="margin-top: 10px;">
+        Volume:
+        <input
+          type="range"
+          id="volumeSlider"
+          value="100"
+          min="0"
+          max="100"
+          step="1"
+          style="margin-left: 8px;"
+        />
+      </div>
       <div class="track-list">
-        <div class="track-item" onclick="loadTrack('sample3.mp3', 'https://filesamples.com/samples/audio/mp3/sample3.mp3')">sample3.mp3</div>
-        <div class="track-item" onclick="loadTrack('sample2.mp3', 'https://filesamples.com/samples/audio/mp3/sample2.mp3')">sample2.mp3</div>
+        <div
+          class="track-item"
+          onclick="loadTrack('Bad Apple', 'https://mapadah.github.io/music/badapple.mp3')"
+          >Bad Apple</div
+        >
+        <div
+          class="track-item"
+          onclick="loadTrack('Pink And White', 'https://mapadah.github.io/music/pinknwhite.mp3')"
+          >Pink And White'</div
+        >
       </div>
       <audio id="musicPlayer"></audio>
     </div>
@@ -238,6 +359,13 @@
     const currentTime = document.getElementById("currentTime");
     const duration = document.getElementById("duration");
     const nowPlaying = document.getElementById("nowPlaying");
+
+    // VOLUME CONTROL
+    const volumeSlider = document.getElementById("volumeSlider");
+    player.volume = 1;
+    volumeSlider.oninput = () => {
+      player.volume = volumeSlider.value / 100;
+    };
 
     function loadTrack(name, url) {
       player.src = url;
@@ -274,31 +402,39 @@
     }
 
     window.onload = () => {
-      document.getElementById('bootScreen').style.display = 'none';
-      document.getElementById('loginScreen').classList.remove('hidden');
+      document.getElementById("bootScreen").style.display = "none";
+      document.getElementById("loginScreen").classList.remove("hidden");
     };
 
     function showDesktop() {
-      document.getElementById('loginScreen').classList.add('hidden');
-      document.getElementById('desktop').classList.remove('hidden');
-      document.getElementById('taskbar').classList.remove('hidden');
-      openWindow('welcomeWindow');
+      document.getElementById("loginScreen").classList.add("hidden");
+      document.getElementById("desktop").classList.remove("hidden");
+      document.getElementById("taskbar").classList.remove("hidden");
+      openWindow("welcomeWindow");
     }
 
     function toggleStartMenu() {
-      const menu = document.getElementById('startMenu');
-      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+      const menu = document.getElementById("startMenu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
     }
 
     function openWindow(id) {
-      document.getElementById(id).style.display = 'block';
-      document.getElementById('startMenu').style.display = 'none';
+      document.getElementById(id).style.display = "block";
+      document.getElementById("startMenu").style.display = "none";
     }
 
-    ["welcomeWindow", "projectsWindow", "linksWindow", "musicWindow"].forEach(id => dragElement(document.getElementById(id)));
+    [
+      "welcomeWindow",
+      "projectsWindow",
+      "linksWindow",
+      "musicWindow",
+    ].forEach((id) => dragElement(document.getElementById(id)));
 
     function dragElement(elmnt) {
-      var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      var pos1 = 0,
+        pos2 = 0,
+        pos3 = 0,
+        pos4 = 0;
       if (elmnt.querySelector(".window-header")) {
         elmnt.querySelector(".window-header").onmousedown = dragMouseDown;
       }
@@ -317,8 +453,8 @@
         pos2 = pos4 - e.clientY;
         pos3 = e.clientX;
         pos4 = e.clientY;
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+        elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
       }
       function closeDragElement() {
         document.onmouseup = null;
