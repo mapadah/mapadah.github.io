@@ -15,23 +15,35 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      text-align: center;
       height: 100vh;
       animation: fadeIn 1s ease-in-out;
     }
 
     h1 {
-      margin-bottom: 10px;
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      padding: 0 20px;
     }
 
     #eta {
-      font-size: 1.2em;
-      margin-top: 5px;
+      font-size: 1.2rem;
       color: #bbbbbb;
     }
 
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      #eta {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -52,8 +64,8 @@
         countdownElement.textContent = "Redirecting...";
         const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         window.location.href = isMobile
-          ? "https://example.com/mobile"   // <-- Replace with your mobile URL
-          : "https://example.com/desktop"; // <-- Replace with your desktop URL
+          ? "https://example.com/mobile"   // Replace with your mobile site
+          : "https://example.com/desktop"; // Replace with your desktop site
       }
     }, 1000);
   </script>
