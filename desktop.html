@@ -175,6 +175,70 @@
     <h1>Welcome!</h1>
     <button onclick="showDesktop()">Login</button>
   </div>
+<!-- 88x31 Window -->
+<div id="badgeWindow" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 320px;
+  background: #C0C0C0;
+  border: 2px solid #000;
+  font-family: 'MS Sans Serif';
+  box-shadow: 4px 4px #808080;
+  z-index: 1000;
+">
+  <div style="
+    background: #000080;
+    color: white;
+    padding: 2px 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  ">
+    <span>My 88x31 Button</span>
+    <button onclick="document.getElementById('badgeWindow').style.display='none'" style="
+      background: #C0C0C0;
+      border: 1px solid #fff;
+      font-weight: bold;
+    ">X</button>
+  </div>
+  <div style="padding: 10px;">
+    <img src="your88x31.gif" alt="88x31 Button" style="
+      image-rendering: pixelated;
+      width: 88px;
+      height: 31px;
+    " />
+    <p style="margin-top: 10px;">
+      Wanna add this to your website?<br />
+      Click the code to copy it to your clipboard!
+    </p>
+    <pre id="codeToCopy" onclick="copyCode()" style="
+      background: white;
+      border: 1px inset #808080;
+      padding: 5px;
+      cursor: pointer;
+      overflow-x: auto;
+      font-family: monospace;
+    ">
+&lt;a href="https://yourwebsite.com"&gt;&lt;img src="https://yourwebsite.com/your88x31.gif" width="88" height="31" alt="Your Site"&gt;&lt;/a&gt;
+    </pre>
+    <div id="copiedMsg" style="display: none; margin-top: 5px; color: green;">
+      Copied to clipboard!
+    </div>
+  </div>
+</div>
+
+<script>
+function copyCode() {
+  const code = document.getElementById('codeToCopy').innerText;
+  navigator.clipboard.writeText(code).then(() => {
+    document.getElementById('copiedMsg').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('copiedMsg').style.display = 'none';
+    }, 2000);
+  });
+}
+</script>
 
   <div class="desktop hidden" id="desktop">
     <div class="desktop-icon" ondblclick="openWindow('welcomeWindow')">
