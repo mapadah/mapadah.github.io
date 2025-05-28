@@ -175,54 +175,78 @@
     <h1>Welcome!</h1>
     <button onclick="showDesktop()">Login</button>
   </div>
-<!-- 88x31 Window -->
+<!-- 88x31 Badge Window -->
 <div id="badgeWindow" style="
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 320px;
+  width: 340px;
   background: #C0C0C0;
   border: 2px solid #000;
-  font-family: 'MS Sans Serif';
-  box-shadow: 4px 4px #808080;
-  z-index: 1000;
+  box-shadow: 2px 2px #808080;
+  font-family: 'MS Sans Serif', sans-serif;
+  z-index: 9999;
 ">
+
+  <!-- Title Bar -->
   <div style="
-    background: #000080;
+    background: linear-gradient(to right, #000080, #0000A0);
     color: white;
     padding: 2px 6px;
+    font-weight: bold;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 2px solid #808080;
   ">
-    <span>My 88x31 Button</span>
+    <span>88x31 Button</span>
     <button onclick="document.getElementById('badgeWindow').style.display='none'" style="
       background: #C0C0C0;
-      border: 1px solid #fff;
+      border: 2px outset #fff;
       font-weight: bold;
+      font-family: inherit;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      line-height: 16px;
+      text-align: center;
+      padding: 0;
     ">X</button>
   </div>
+
+  <!-- Window Content -->
   <div style="padding: 10px;">
     <img src="your88x31.gif" alt="88x31 Button" style="
-      image-rendering: pixelated;
       width: 88px;
       height: 31px;
-    " />
-    <p style="margin-top: 10px;">
-      Wanna add this to your website?<br />
+      image-rendering: pixelated;
+      border: 2px inset #fff;
+      display: block;
+      margin-bottom: 10px;
+    ">
+
+    <p style="margin: 0 0 10px;">
+      Wanna add this to your website?<br>
       Click the code to copy it to your clipboard!
     </p>
+
     <pre id="codeToCopy" onclick="copyCode()" style="
       background: white;
-      border: 1px inset #808080;
+      border: 2px inset #808080;
       padding: 5px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      white-space: pre-wrap;
       cursor: pointer;
-      overflow-x: auto;
-      font-family: monospace;
+      user-select: all;
+    ">&lt;a href="https://mapadahs.fun"&gt;&lt;img src="https://mapadahs.fun/mpd88x31.gif" width="88" height="31" alt="mpd.fun"&gt;&lt;/a&gt;</pre>
+
+    <div id="copiedMsg" style="
+      display: none;
+      color: green;
+      font-size: 12px;
+      margin-top: 5px;
     ">
-&lt;a href="https://mapadahs.fun"&gt;&lt;img src="https://mapadahs.fun/mpd88x31.gif" width="88" height="31" alt="mpd.fun"&gt;&lt;/a&gt;
-    </pre>
-    <div id="copiedMsg" style="display: none; margin-top: 5px; color: green;">
       Copied to clipboard!
     </div>
   </div>
@@ -239,6 +263,7 @@ function copyCode() {
   });
 }
 </script>
+
 
   <div class="desktop hidden" id="desktop">
     <div class="desktop-icon" ondblclick="openWindow('welcomeWindow')">
