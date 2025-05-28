@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="title" content="Unsupported Device" />
+  <meta name="description" content="Windows 95 style BSOD for unsupported mobile devices." />
+  <meta name="author" content="mapadah" />
+  <title>Unsupported Device</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Lucida Console", Monaco, monospace;
+      background-color: #0000AA;
+      color: white;
+      font-size: 18px;
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: left;
+      height: 100vh;
+    }
+
+    .bsod {
+      max-width: 800px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .bsod h1 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+    }
+
+    @media screen and (max-width: 600px) {
+      body {
+        font-size: 16px;
+        padding: 10px;
+      }
+
+      .bsod {
+        max-width: 100%;
+        padding: 10px;
+      }
+
+      .bsod h1 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bsod">
+    <h1>*** STOP: 0x0000001E (0x0000005, 0x00000000, 0x00000000)</h1>
+    <p>A problem has been detected and Windows has been shut down to prevent damage to your device.</p>
+    <p>If this is the first time you've seen this Stop error screen, restart your device. If this screen appears again, follow these steps:</p>
+    <p>Mobile devices are <strong>not supported</strong> at the moment.<br>
+    Please visit this site on a desktop computer for the full experience.</p>
+    <p>Technical Information:<br>
+    *** STOP: 0x0000MOBILE_UNSUPPORTED (0xBADDEVICE)</p>
+  </div>
+</body>
+</html>
