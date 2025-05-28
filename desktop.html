@@ -97,15 +97,20 @@
       height: 32px;
     }
     .desktop {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 40px;
-      display: flex;
-      flex-wrap: wrap;
-      padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 40px;
+    display: flex;
+    flex-wrap: nowrap; /* Don't wrap to the next line */
+    align-items: flex-start;
+    overflow-x: auto; /* Allow horizontal scroll if needed */
+    overflow-y: hidden;
+    padding: 10px;
+    gap: 10px;
     }
+
     .window {
       position: absolute;
       width: 400px;
@@ -209,11 +214,11 @@
 		<img src="https://win98icons.alexmeub.com/icons/png/joystick-4.png" alt="Flash" />
 		<div>Games</div>
 	</div>
-    </div>
-  </div>
+	<div class="desktop-icon" ondblclick="openWindow('infoWindow')">
+		<img src="https://win98icons.alexmeub.com/icons/png/msg_question-1.png" alt="88x31" />
+		<div>88x31</div>
+	</div>
 </div>
-
-
 
   <div class="taskbar" id="taskbar">
     <button class="start-button" onclick="toggleStartMenu()">Start</button>
@@ -225,6 +230,7 @@
     <button onclick="openWindow('linksWindow')">Links</button>
     <button onclick="openWindow('musicWindow')">Music Player</button>
 	<button onclick="location.href='games.html'">Games</button>
+	<button onclick="openWindow('infoWindow')">88x31</button>
   </div>
 
   <!-- projects window -->
@@ -272,6 +278,29 @@
     <p><strong>Website:</strong> <a href="https://mapadahs.fun" target="_blank"> mapadahs.fun</a></p>
     <p><strong>guns.lol:</strong> <a href="https://guns.lol/mapadah" target="_blank"> guns.lol/mapadah</a></p>
     <p><strong>Youtube:</strong> <a href="https://youtube.com/@mapadahofficial" target="_blank"> @mapadahofficial</a></p>
+  </div>
+</div>
+<!-- Information Window -->
+<div
+  class="window"
+  id="infoWindow"
+  style="bottom: 60px; right: 20px; position: fixed; display: none"
+>
+  <div class="title-bar window-header">
+    <div class="title-bar-text">88x31</div>
+    <div class="title-bar-controls">
+      <button aria-label="Close" onclick="this.parentElement.parentElement.parentElement.style.display='none'"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <img src="https://mapadahs.fun/mpd88x31.gif" alt="88x31" width="88" height="31" />
+      <button onclick="copyEmbed()">Copy 88x31 Embed</button>
+    </div>
+    <textarea id="embedCode" style="width:100%; margin-top: 10px;" rows="2" readonly>
+<a href="https://mapadahs.fun" target="_blank"><img src="https://mapadahs.fun/mpd88x31.gif" width="88" height="31" alt="mapadah 95"></a>
+    </textarea>
+    <div id="copyMsg" style="color: green; display: none; margin-top: 5px;">Copied to clipboard!</div>
   </div>
 </div>
 
@@ -481,46 +510,17 @@
         document.onmousemove = null;
       }
     }
+	function copyEmbed() {
+  const embedCode = document.getElementById("embedCode");
+  navigator.clipboard.writeText(embedCode.value).then(() => {
+    const msg = document.getElementById("copyMsg");
+    msg.style.display = "block";
+    setTimeout(() => {
+      msg.style.display = "none";
+    }, 2000);
+  });
+}
+
   </script>
-<!-- Ruffle Flash Player Window 
-<div class="window" id="flashWindow" style="top: 25px; left: 100px; width: 800x; height: 600px; display: none;">
-  <div class="title-bar window-header">
-    <div class="title-bar-text">Flash Player</div>
-    <div class="title-bar-controls">
-      <button aria-label="Close" onclick="this.parentElement.parentElement.parentElement.style.display='none'"></button>
-    </div>
-  </div>
-  <div class="window-body" style="display: flex; height: 100%;">
-    <div style="width: 150px; border-right: 2px solid gray; padding-right: 8px;">
-      <strong>Games</strong>
-      <ul style="list-style: none; padding: 0;">
-        <li><button onclick="loadSWF('https://mapadah.github.io/game/l2f.swf')">Game 1</button></li>
-        <li><button onclick="loadSWF('https://example.com/game2.swf')">Game 2</button></li>
-        <li><button onclick="loadSWF('https://example.com/game3.swf')">Game 3</button></li>
-      </ul>
-    </div>
-    <div style="flex-grow: 1; padding-left: 8px;">
-      <div id="flashContainer" style="width: 400px; height:350px; background: transparent;"></div>
-    </div>
-  </div>
-</div>
-<!-- Ruffle Embed 
-<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
-<script>
-  let rufflePlayer = null;
-  function loadSWF(url) {
-    const container = document.getElementById("flashContainer");
-    container.innerHTML = ""; // Clear previous
-    const ruffle = window.RufflePlayer.newest();
-    const player = ruffle.createPlayer();
-    container.appendChild(player);
-    player.load(url);
-    rufflePlayer = player;
-  }
-
-  // Make it draggable like others
-  dragElement(document.getElementById("flashWindow"));
-</script>-->
-
 </body>
 </html>
